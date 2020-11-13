@@ -1,0 +1,44 @@
+#include <string>
+using namespace std;
+
+class Persona{
+    string nombre;
+    string rut;
+    int edad;
+public:
+    Persona();
+    Persona(string nombre, string rut, int edad);
+    ~Persona();
+};
+
+#include "Persona.h"
+
+Persona::Persona() {}
+
+Persona::Persona(string nombre, string rut, int edad) {
+    this->nombre = nombre;
+    this->rut = rut;
+    this->edad = edad;
+}
+
+Persona::~Persona() {}
+//------------------------------------------------------------
+#include <string>
+#include "Persona.h"
+using namespace std;
+
+class Alumno : public Persona{
+    int cantRamos;
+public:
+    Alumno();
+    Alumno(string nombre, string rut, int edad, int cantRamos) : Persona(nombre, rut, edad); //Aquí me tira error, pero si quito el constructor de Persona y todo lo dejo intacto, me funciona perfectamente (Esta solución la encontre en internet)
+    ~Alumno();
+};
+
+#include "Alumno.h"
+
+Alumno::Alumno() {}
+
+Alumno::Alumno(string nombre, string rut, int edad, int cantRamos) : Persona(nombre, rut, edad){
+    this->cantRamos = cantRamos;
+}
